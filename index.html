@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>九州自駕 · 2月行程</title>
+<style>
+  :root{
+    --green:#1f5a3f; --green2:#2f6b4f; --cream:#f5f0e4; --cream2:#ede5d3;
+    --ink:#2a2620; --muted:#8a8073; --line:#d9cdb6; --card:#fffdf7;
+    --snow:#dceaf0; --warn:#c4622d; --warnbg:#fbeee4;
+    --accent:#c98a3a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--cream);color:var(--ink);
+    font-family:"Hiragino Sans","Noto Sans CJK TC","PingFang TC",sans-serif;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{max-width:480px;margin:0 auto;min-height:100vh;position:relative;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(220,234,240,.5), transparent 40%),
+      radial-gradient(circle at 88% 4%, rgba(220,234,240,.35), transparent 35%),
+      var(--cream);}
+  /* header */
+  .hd{padding:18px 20px 12px;position:sticky;top:0;z-index:30;
+    background:linear-gradient(180deg, var(--green) 0%, var(--green2) 100%);
+    color:#fbf7ec;box-shadow:0 4px 18px rgba(31,90,63,.25)}
+  .hd .ttl{font-size:19px;font-weight:800;letter-spacing:1px;display:flex;align-items:center;gap:8px}
+  .hd .sub{font-size:11px;opacity:.8;margin-top:3px;letter-spacing:.5px}
+  .snowflake{font-size:15px}
+  /* tabs */
+  .tabs{display:flex;gap:6px;padding:12px 14px 8px;position:sticky;top:64px;z-index:25;
+    background:linear-gradient(180deg, rgba(245,240,228,.97), rgba(245,240,228,.85));
+    backdrop-filter:blur(8px);overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;min-width:62px;text-align:center;padding:8px 6px;border-radius:13px;
+    background:var(--card);border:1.5px solid var(--line);cursor:pointer;transition:.18s}
+  .tab .d{font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.5px}
+  .tab .n{font-size:15px;font-weight:800;color:var(--green);margin-top:1px}
+  .tab.on{background:var(--green);border-color:var(--green);transform:translateY(-1px);
+    box-shadow:0 5px 14px rgba(31,90,63,.3)}
+  .tab.on .d{color:rgba(255,255,255,.7)} .tab.on .n{color:#fff}
+  /* day head */
+  .dayhd{margin:6px 16px 2px;padding:14px 16px;border-radius:16px;color:#fff;
+    background:linear-gradient(120deg,var(--green) 0%,var(--green2) 100%);
+    box-shadow:0 6px 16px rgba(31,90,63,.2);position:relative;overflow:hidden}
+  .dayhd::after{content:"❄";position:absolute;right:-4px;top:-10px;font-size:60px;opacity:.10}
+  .dayhd .dt{font-size:20px;font-weight:800}
+  .dayhd .theme{font-size:12px;opacity:.85;margin-top:3px}
+  .dayhd .temp{position:absolute;right:16px;top:14px;text-align:right}
+  .dayhd .temp .t{font-size:20px;font-weight:800}
+  .dayhd .temp .l{font-size:9px;opacity:.8}
+  /* timeline */
+  .dayimg{display:block;width:calc(100% - 32px);margin:10px 16px 0;border-radius:16px;border:1px solid var(--line);box-shadow:0 4px 14px rgba(42,38,32,.12)}
+  .tl{padding:10px 16px 30px}
+  .ev{position:relative;padding-left:54px;padding-bottom:14px}
+  .ev::before{content:"";position:absolute;left:21px;top:30px;bottom:-8px;width:2px;
+    background:linear-gradient(180deg,var(--line),rgba(217,205,182,.3))}
+  .ev:last-child::before{display:none}
+  .ev .time{position:absolute;left:0;top:0;width:46px;text-align:center}
+  .ev .time .hh{font-size:12px;font-weight:800;color:var(--green);
+    background:var(--cream);padding:1px 0;border-radius:6px;display:inline-block;line-height:1.2}
+  .dot{position:absolute;left:14px;top:24px;width:16px;height:16px;border-radius:50%;
+    background:var(--card);border:3px solid var(--green);z-index:2}
+  .dot.food{border-color:var(--accent)} .dot.move{border-color:#5b8aa6}
+  .dot.spot{border-color:var(--green)} .dot.stay{border-color:#9a6db5}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:12px 13px;box-shadow:0 2px 8px rgba(42,38,32,.05);margin-top:18px}
+  .card .nm{font-size:14.5px;font-weight:800;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;color:#fff}
+  .b-move{background:#5b8aa6} .b-food{background:var(--accent)}
+  .b-spot{background:var(--green2)} .b-stay{background:#9a6db5}
+  .card .desc{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.55}
+  .card .note-in{font-size:11px;color:var(--ink);margin-top:7px;padding:8px 10px;
+    background:#f4f0e4;border-radius:9px;border-left:3px solid var(--accent);line-height:1.7}
+  .card .note-in a{color:var(--green);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+  .card .note-in b{color:var(--green2)}
+  /* 車程連接條 */
+  .leg{position:relative;padding-left:54px;margin:-6px 0 4px;height:22px;display:flex;align-items:center}
+  .leg .ln{position:absolute;left:21px;top:-4px;bottom:-4px;width:2px;background:rgba(217,205,182,.5)}
+  .leg .txt{font-size:10.5px;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:5px}
+  .leg .ic{font-size:13px}
+  .card .meta{font-size:11px;color:var(--ink);margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 12px}
+  .card .meta b{color:var(--green)}
+  .acts{display:flex;gap:7px;margin-top:9px}
+  .btn{flex:1;text-align:center;font-size:11.5px;font-weight:700;padding:8px;border-radius:10px;
+    text-decoration:none;border:1.5px solid var(--green);color:var(--green);background:transparent;
+    transition:.15s;display:flex;align-items:center;justify-content:center;gap:4px}
+  .btn:active{transform:scale(.97)}
+  .btn.fill{background:var(--green);color:#fff}
+  .btn.tr{border-color:var(--accent);color:var(--accent)}
+  /* note boxes */
+  .note{margin:8px 16px;padding:11px 14px;border-radius:13px;font-size:11.5px;line-height:1.6}
+  .note.warn{background:var(--warnbg);border:1px solid #e8c3a3;border-left:5px solid var(--warn);color:#7a3d18}
+  .note.snow{background:var(--snow);border:1px solid #b8d4e0;border-left:5px solid #5b8aa6;color:#234a5c}
+  .note.tk{background:#f0ead8;border:1px solid var(--line);border-left:5px solid var(--accent);color:#6a5320}
+  .note .h{font-weight:800;margin-bottom:3px;display:block}
+  /* ticket summary */
+  .tkwrap{padding:4px 16px 40px}
+  .tktbl{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);
+    border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .tktbl th{background:var(--green);color:#fff;font-weight:700;padding:9px 8px;font-size:11px;text-align:left}
+  .tktbl td{padding:8px;border-top:1px solid var(--line)}
+  .tktbl tr:nth-child(even) td{background:#faf6ec}
+  .tktbl .tot td{background:var(--cream2);font-weight:800;color:var(--green)}
+  .free{display:inline-block;background:#e3efe7;color:var(--green);font-size:10px;
+    padding:1px 6px;border-radius:6px;font-weight:700}
+  .hint{font-size:10.5px;color:var(--muted);margin:8px 4px;line-height:1.6}
+  /* bottom nav */
+  .bn{position:sticky;bottom:0;z-index:30;display:flex;background:rgba(255,253,247,.96);
+    backdrop-filter:blur(10px);border-top:1px solid var(--line);max-width:480px;margin:0 auto}
+  .bn a{flex:1;text-align:center;padding:11px 0 14px;font-size:10px;color:var(--muted);
+    text-decoration:none;font-weight:700}
+  .bn a.on{color:var(--green)}
+  .bn a .ic{font-size:18px;display:block;margin-bottom:2px}
+  .view{display:none} .view.on{display:block}
+  .pad{height:8px}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="ttl"><span class="snowflake">❄</span> 九州自駕 · 2月</div>
+  <div class="sub">2027/2/6–2/10 · 九州自駕</div>
+</div>
+
+<!-- ===== 行程 VIEW ===== -->
+<div id="v-trip" class="view on">
+  <div class="tabs" id="tabs"></div>
+  <div id="daybox"></div>
+</div>
+
+<!-- ===== 門票 VIEW ===== -->
+<div id="v-ticket" class="view">
+  <div class="tkwrap">
+    <div class="dayhd" style="margin:14px 0 12px">
+      <div class="dt">門票總整理</div>
+      <div class="theme">6 大 + 2 小（都 3 歲）</div>
+    </div>
+    <table class="tktbl">
+      <tr><th>景點</th><th>大人</th><th>小孩</th><th>小計</th></tr>
+      <tr><td>阿蘇牧場<br><span style="font-size:9px;color:#c4622d">現金/PayPay限定</span></td><td>800×6</td><td>500×2</td><td>5,800</td></tr>
+      <tr><td>九州自然動物園</td><td>2,600×6</td><td><span class="free">3歲免</span></td><td>15,600</td></tr>
+      <tr><td>海之中道水族館</td><td>2,500×6</td><td>700×2</td><td>16,400</td></tr>
+      <tr><td>teamLab 福岡</td><td>2,400×6</td><td><span class="free">3歲免</span></td><td>14,400</td></tr>
+      <tr class="tot"><td colspan="3">合計（約）</td><td>52,200</td></tr>
+    </table>
+    <div class="note tk" style="margin:12px 0 0">
+      <span class="h">💡 省錢 & 提醒</span>
+      • 海之中道水族館 2/1–3/31 有 JAF App 優惠（大人2,200、幼兒600），可省約2,000円<br>
+      • 阿蘇牧場只收現金/PayPay，8人份帶足現金<br>
+      • teamLab 時段票，接近出發先網路買；避開週末13–15點<br>
+      • 動物園/teamLab 3歲免費，但同行大人仍需購票
+    </div>
+    <div class="note snow" style="margin:10px 0 0">
+      <span class="h">✓ 全免費</span>
+      高千穂峽步道(不划船) · 太宰府參拜 · 志賀海神社 · 金鱗湖 · 巨峰酒莊參觀 · 鳥栖Outlet · LaLaport看鋼彈
+    </div>
+    <div class="hint">票價以官方即時資訊為準，可能調整。小孩票價依實際年齡套用。</div>
+  </div>
+</div>
+
+<!-- ===== 雪天 VIEW ===== -->
+<div id="v-snow" class="view">
+  <div class="tkwrap">
+    <div class="dayhd" style="margin:14px 0 12px">
+      <div class="dt">雪天 / 結冰應對</div>
+      <div class="theme">出發當天照這個判斷</div>
+    </div>
+    <div class="note snow">
+      <span class="h">📊 阿蘇乙姫實測（2016–2026，2月上半）</span>
+      清晨結冰機率高（6~10成，近乎天天）；下雪機率低（多1~2成）。<b>結冰比下雪更要防</b>（黑冰看不見）→ 雪胎必租、晚點出發。
+    </div>
+    <div class="note warn">
+      <span class="h">🚗 出發時間（避清晨結冰）</span>
+      第2天 阿蘇→由布院：<b>10:00 出發</b><br>
+      第3天 由布院→巨峰酒莊：<b>9:30 出發</b>（別趕8:30）
+    </div>
+    <div class="note tk">
+      <span class="h">🛞 車輛（兩台都要）</span>
+      首選 RAV4 ＞ Harrier ＞ Sienta，全部 <b>4WD ＋ 雪胎 ＋ 兒童座椅×1 ＋ 異地還車（阿蘇取／福岡機場還）</b>。<br>9月先上 Nippon／Jalan 比價卡位（有完整配置就先訂可免費取消）；<b>11/8（取車前90天）一早鎖定完整配置</b>（4WD＋雪胎＋異地還車屬限量、近日期才穩定釋放）。Toyota 官網約11月才開。
+    </div>
+    <div class="dayhd" style="margin:16px 0 10px;background:linear-gradient(120deg,#5b8aa6,#3f6b82)">
+      <div class="dt" style="font-size:16px">決策樹</div>
+    </div>
+    <div class="note snow"><span class="h">① 阿蘇→由布院/動物園（看雪/結冰）</span>
+      無雪 → 走經<b>小国町</b>捷徑（快又美）<br>
+      有雪/結冰 → 走<b>九重IC</b>上大分道，<b>湯布院IC</b>下<br>
+      大雪封路 → 往西大繞行 / 調整行程</div>
+    <div class="note snow"><span class="h">② 由布院→巨峰酒莊（看結冰）</span>
+      延到9:30後出發，走大分道主線，小心橋面/背陰彎道</div>
+    <div class="note snow"><span class="h">③ 由布院→動物園（看濃霧）</span>
+      濃霧通行止め → 走 NEXCO 官方繞道（う回路）</div>
+    <div class="note warn" style="margin-top:10px">
+      <span class="h">⚠ 避開</span>繞「くじゅう連山」那條（海拔最高1330m、最會結冰）。動物園確認電話 0978-48-2331。
+    </div>
+  </div>
+</div>
+
+<!-- bottom nav -->
+<div class="bn">
+  <a id="n-trip" class="on" onclick="nav('trip')"><span class="ic">🗓</span>行程</a>
+  <a id="n-ticket" onclick="nav('ticket')"><span class="ic">🎫</span>門票</a>
+  <a id="n-snow" onclick="nav('snow')"><span class="ic">❄️</span>雪天</a>
+</div>
+
+<script>
+const G = (la,lo)=>`https://www.google.com/maps/dir/?api=1&destination=${la},${lo}&travelmode=driving`;
+const Q = (q)=>`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+
+const DAYS = [
+ {d:"D1",date:"2/6 (六)",theme:"抵熊本 · 阿蘇",temp:"7°",tlow:"熊本",img:"day1.jpg",
+  ev:[
+   {t:"10:35",ty:"move",nm:"熊本機場 KMJ 抵達",desc:"JX846 台北07:30→熊本10:35，取車",leg:"🚗 26分",map:Q("熊本空港 KMJ")},
+   {t:"12:26",ty:"spot",nm:"Aso Strawberry Field 木之內農場",desc:"採草莓（いちご狩り），停留約40分",leg:"🚗 1小時01分",map:Q("木之内農園 阿蘇 いちご狩り")},
+   {t:"14:07",ty:"spot",nm:"高千穂神社",desc:"杉木環繞的神社，停留約1小時",note:`🅿 <a href="${Q('高千穂神社 駐車場')}" target="_blank">高千穂神社 駐車場</a>`,leg:"🚗 5分",map:Q("高千穂神社")},
+   {t:"15:12",ty:"spot",nm:"高千穂峽",desc:"走步道看真名井瀑布（不划船=免費）。停留約1小時",note:`🅿 <a href="${Q('高千穂峡 第1御塩井駐車場')}" target="_blank">第1御鹽井停車場</a> ・ <a href="${Q('高千穂峡 第2御塩井駐車場')}" target="_blank">第2御鹽井停車場</a>`,leg:"🚗 1小時13分",map:Q("高千穂峡")},
+   {t:"17:25",ty:"stay",nm:"亀之井阿蘇公園度假村",desc:"入住。夜間盆地低溫，留意隔日清晨結冰",map:Q("亀の井ホテル 阿蘇")}
+  ]},
+ {d:"D2",date:"2/7 (日)",theme:"阿蘇 → 動物園 → 由布院",temp:"3~4°",tlow:"由布院",img:"day2.jpg",
+  ev:[
+   {t:"08:59",ty:"spot",nm:"放牧牛羊（草千里方向）",desc:"看放牧牛羊，停留約15分。建議整體10點後再上山路避結冰",leg:"🚗 17分",map:Q("草千里ヶ浜 阿蘇")},
+   {t:"09:31",ty:"food",nm:"ASO MILK FACTORY",desc:"阿蘇牧場物產・午餐。大人800/兒童500，限現金或PayPay。停留約1小時",leg:"🚗 1小時09分",map:Q("ASO MILK FACTORY 阿蘇")},
+   {t:"11:40",ty:"spot",nm:"物產館｜道の駅 ゆふいん",desc:"湯布院休息站、農產伴手禮，停留約1小時",leg:"🚗 27分",map:Q("道の駅 ゆふいん")},
+   {t:"13:07",ty:"spot",nm:"九州自然動物園 African Safari",desc:"開車進safari。大人2,600/3歲免。停留約3小時。2月閉園16:00早到。電話0978-48-2331",leg:"🚗 28分",map:G(33.3509,131.4137)},
+   {t:"17:00",ty:"stay",nm:"由布院（住）",desc:"溫泉鄉。若結冰走九重IC→大分道→湯布院IC",map:Q("由布院温泉 駅")}
+  ]},
+ {d:"D3",date:"2/8 (一)",theme:"由布院 → 柳川 → 鳥栖",theme2:true,temp:"3~4°",tlow:"由布院",img:"day3.jpg",
+  ev:[
+   {t:"08:00",ty:"spot",nm:"金鱗湖",desc:"由布院晨霧名所，08:30離開。往西下山前留意結冰",note:`🅿 <a href="${Q('セイワパーク金鱗湖')}" target="_blank">セイワパーク金鱗湖</a>（平日400/假日900円，2/8是假日）<br>🅿 <a href="${Q('タイムズ湯布院金鱗湖')}" target="_blank">Times 湯布院金鱗湖</a>`,leg:"🚗 1小時15分",map:Q("金鱗湖 由布院")},
+   {t:"09:45",ty:"spot",nm:"巨峰ワイナリー Kyoho Winery",desc:"久留米田主丸。參觀免費，試飲/餐廳收費。開車不能喝酒。停留約1小時",leg:"🚗 1小時05分",map:Q("巨峰ワイナリー 田主丸")},
+   {t:"11:50",ty:"food",nm:"若松屋（鰻魚蒸籠飯）",desc:"柳川名物せいろ蒸し，停留約1.5小時",note:`🅿 <a href="${Q('タイムズ柳川城隅町')}" target="_blank">Times 柳川城隅町</a>`,leg:"🚶 5分",map:Q("若松屋 柳川 うなぎ")},
+   {t:"13:25",ty:"spot",nm:"柳川川下り（柳川遊船マル工観光）",desc:"水鄉遊船，冬有炬燵暖桌船。停留約2小時",note:`🅿 <a href="${Q('柳川市営本城町観光駐車場')}" target="_blank">柳川市営本城町観光駐車場</a>（一般車可停，1日500円）<br>🅿 <a href="${Q('クルメパーク川下り駐車場 柳川')}" target="_blank">クルメパーク川下り駐車場</a>`,leg:"🚗 46分",map:Q("柳川遊船 マルガ―観光")},
+   {t:"16:11",ty:"spot",nm:"Workman Plus 鳥栖",desc:"機能服飾賣場，停留約1小時",leg:"🚗 12分",map:Q("Workman Plus 鳥栖")},
+   {t:"17:23",ty:"stay",nm:"Route Inn 鳥栖站前",desc:"入住，停留約1小時後外出",leg:"🚶 9分",map:Q("ホテルルートイン 鳥栖駅前")},
+   {t:"18:32",ty:"spot",nm:"Frespo Tosu",desc:"鳥栖購物中心，停留約1小時",map:Q("フレスポ鳥栖")}
+  ]},
+ {d:"D4",date:"2/9 (二)",theme:"太宰府 · teamLab · 福岡",temp:"7°",tlow:"福岡",img:"day4.jpg",
+  ev:[
+   {t:"08:00",ty:"stay",nm:"Route Inn 鳥栖站前（出發）",desc:"09:00離開",leg:"🚗 33分",map:Q("ホテルルートイン 鳥栖駅前")},
+   {t:"09:33",ty:"spot",nm:"太宰府天滿宮",desc:"參拜免費。學問之神，停留約1.5小時",note:`🅿 <a href="${Q('太宰府天満宮前駐車場')}" target="_blank">太宰府天満宮前駐車場</a>（最近）<br>🅿 <a href="${Q('グッドパーク大宰府Ⅱ')}" target="_blank">グッドパーク大宰府Ⅱ</a><br>🅿 <a href="${Q('グッドパーキング太宰府駅前')}" target="_blank">グッドパーキング 太宰府駅前</a><br>🅿 <a href="${Q('サクラサク駐車場Ⅱ 太宰府')}" target="_blank">サクラサク駐車場Ⅱ</a>（平日最大400円）`,leg:"🚗 16分",map:Q("太宰府天満宮")},
+   {t:"11:19",ty:"food",nm:"Gusto 太宰府交流道店",desc:"午餐，停留約1.5小時",leg:"🚗 24分",map:Q("ガスト 太宰府")},
+   {t:"13:13",ty:"spot",nm:"teamLab 森林 福岡",desc:"BOSS E・ZO 5F。大人2,400/3歲免。停留約3小時。時段票先網路買、先下載App、好走的鞋",note:`🅿 <a href="${Q('BOSS E・ZO FUKUOKA 駐車場')}" target="_blank">E・ZO 東側入口 駐車場</a>（一律3,000円，巨蛋區較貴）`,leg:"🚗 16分",map:Q("teamLab Forest 福岡 BOSS E・ZO")},
+   {t:"16:29",ty:"spot",nm:"八女本舖（アンテナショップ）",desc:"八女茶等特產，停留約1小時",map:Q("アンテナショップ八女本舗 福岡")}
+  ]},
+ {d:"D5",date:"2/10 (三)",theme:"福岡 · 回程",temp:"7°",tlow:"福岡",img:"day5.jpg",
+  ev:[
+   {t:"07:00",ty:"food",nm:"客美多咖啡 福岡渡邊通五丁目店",desc:"早午餐（07:00開始營業），09:30離開",leg:"🚗 36分",map:Q("コメダ珈琲 福岡渡辺通")},
+   {t:"10:06",ty:"spot",nm:"志賀海神社",desc:"免費。海神信仰，停留約30分",leg:"🚗 11分",map:Q("志賀海神社")},
+   {t:"10:47",ty:"spot",nm:"海洋世界 海之中道（水族館）",desc:"大人2,500/小中1,200/幼兒700。2月有JAF優惠。停留約1小時",leg:"🚗 33分",map:Q("マリンワールド海の中道")},
+   {t:"12:20",ty:"spot",nm:"Mitsui Shopping Park LaLaport 福岡",desc:"看實物大鋼彈(免費)。KidZania需另預約。停留約1小時",leg:"🚗 11分",map:Q("ららぽーと福岡")},
+   {t:"17:10",ty:"move",nm:"福岡國際機場 還車 → FUK",desc:"JX841 福岡19:10→桃園。建議17:10前到還車",map:Q("福岡空港 国際線")}
+  ]}
+];
+const BADGE={move:["b-move","交通"],food:["b-food","美食"],spot:["b-spot","景點"],stay:["b-stay","住宿"]};
+
+function renderTabs(){
+  const t=document.getElementById('tabs');
+  t.innerHTML=DAYS.map((d,i)=>`<div class="tab ${i==0?'on':''}" onclick="showDay(${i})">
+    <div class="d">${d.date.split(' ')[0]}</div><div class="n">${d.d}</div></div>`).join('');
+}
+function showDay(i){
+  document.querySelectorAll('.tab').forEach((el,k)=>el.classList.toggle('on',k==i));
+  const d=DAYS[i];
+  const head=`<div class="dayhd" ${d.theme2?'style="background:linear-gradient(120deg,#3f6b82,#5b8aa6)"':''}>
+    <div class="dt">${d.date}</div><div class="theme">${d.theme}</div>
+    <div class="temp"><div class="t">${d.temp}</div><div class="l">${d.tlow}</div></div></div>`;
+  const tl=`<div class="tl">${d.ev.map(e=>{
+    const [bc,bt]=BADGE[e.ty];
+    return `<div class="ev"><div class="time"><div class="hh">${e.t}</div></div>
+      <div class="dot ${e.ty}"></div>
+      <div class="card">
+        <div class="nm">${e.nm}<span class="badge ${bc}">${bt}</span></div>
+        <div class="desc">${e.desc}</div>
+        ${e.note?`<div class="note-in">${e.note}</div>`:''}
+        <div class="acts">
+          <a class="btn fill" href="${e.map}" target="_blank">📍 地圖/導航</a>
+        </div>
+      </div></div>
+      ${e.leg?`<div class="leg"><div class="ln"></div><div class="txt"><span class="ic">${e.leg.split(' ')[0]}</span>${e.leg.split(' ').slice(1).join(' ')}</div></div>`:''}`;
+  }).join('')}</div>`;
+  const pic=d.img?`<img class="dayimg" src="${d.img}" alt="${d.date} 插畫" onerror="this.style.display='none'">`:'';
+  document.getElementById('daybox').innerHTML=head+pic+tl;
+}
+function nav(v){
+  ['trip','ticket','snow'].forEach(x=>{
+    document.getElementById('v-'+x).classList.toggle('on',x==v);
+    document.getElementById('n-'+x).classList.toggle('on',x==v);
+  });
+  window.scrollTo(0,0);
+}
+renderTabs(); showDay(0);
+</script>
+</body>
+</html>
