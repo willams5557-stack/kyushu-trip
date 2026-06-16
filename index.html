@@ -83,6 +83,7 @@
   .legt{position:absolute;left:0;width:46px;text-align:center;line-height:1.05}
   .legt-h{font-size:12.5px;font-weight:800;color:var(--accent);display:inline-block;background:var(--cream);border-radius:6px;padding:1px 4px}
   .legt-l{font-size:8px;color:var(--muted);font-weight:700;display:block}
+  .stay{font-size:9.5px;font-weight:800;color:#2f6b4f;background:#e3efe7;border-radius:8px;padding:2px 7px;margin-left:auto}
   .leg .ln{position:absolute;left:21px;top:-4px;bottom:-4px;width:2px;background:rgba(217,205,182,.5)}
   .leg .txt{font-size:10.5px;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:5px}
   .leg .ic{font-size:13px}
@@ -219,8 +220,8 @@ const DAYS = [
   ev:[
    {t:"10:35",ty:"move",nm:"熊本機場 KMJ 抵達",desc:"JX846 台北07:30→熊本10:35。取車整裝 → 12:00 離開",leg:"🚗 26分",map:Q("熊本空港 KMJ")},
    {t:"12:26",ty:"spot",nm:"Aso Strawberry Field 木之內農場",desc:"採草莓（いちご狩り）→ 13:06 離開",leg:"🚗 1小時01分",map:Q("木之内農園 阿蘇 いちご狩り")},
-   {t:"14:07",ty:"spot",nm:"高千穂神社＋高千穂峽",desc:"先參拜高千穂神社→開車5分到高千穂峽走步道（不划船=免費）→ 16:12 離開",note:`🅿 <a href="${Q('高千穂神社 駐車場')}" target="_blank">高千穂神社 駐車場</a><br>🅿 <a href="${Q('高千穂峡 第1御塩井駐車場')}" target="_blank">高千穂峽 第1御鹽井</a> ・ <a href="${Q('高千穂峡 第2御塩井駐車場')}" target="_blank">第2御鹽井</a>`,leg:"🚗 1小時13分",map:Q("高千穂峡")},
-   {t:"17:25",ty:"stay",nm:"亀之井阿蘇公園度假村",desc:"入住。夜間盆地低溫，留意隔日清晨結冰",map:Q("亀の井ホテル 阿蘇")}
+   {t:"14:07",ty:"spot",nm:"高千穂神社＋高千穂峽",desc:"先參拜高千穂神社→開車5分到高千穂峽走步道（不划船=免費）→ 16:07 離開",note:`🅿 <a href="${Q('高千穂神社 駐車場')}" target="_blank">高千穂神社 駐車場</a><br>🅿 <a href="${Q('高千穂峡 第1御塩井駐車場')}" target="_blank">高千穂峽 第1御鹽井</a> ・ <a href="${Q('高千穂峡 第2御塩井駐車場')}" target="_blank">第2御鹽井</a>`,leg:"🚗 1小時13分",map:Q("高千穂峡")},
+   {t:"17:20",ty:"stay",nm:"亀之井阿蘇公園度假村",desc:"入住。夜間盆地低溫，留意隔日清晨結冰",map:Q("亀の井ホテル 阿蘇")}
   ]},
  {d:"D2",date:"2/7 (日)",theme:"阿蘇 → 動物園 → 由布院",temp:"3~4°",tlow:"由布院",img:"day2.jpg",
   ev:[
@@ -233,18 +234,18 @@ const DAYS = [
   ev:[
    {t:"08:00",ty:"spot",nm:"金鱗湖",desc:"由布院晨霧名所 → 08:30 離開。往西下山前留意結冰",note:`🅿 <a href="${Q('セイワパーク金鱗湖')}" target="_blank">セイワパーク金鱗湖</a>（平日400/假日900円，2/8是假日）<br>🅿 <a href="${Q('タイムズ湯布院金鱗湖')}" target="_blank">Times 湯布院金鱗湖</a>`,leg:"🚗 1小時15分",map:Q("金鱗湖 由布院")},
    {t:"09:45",ty:"spot",nm:"巨峰ワイナリー Kyoho Winery",desc:"久留米田主丸。參觀免費，試飲/餐廳收費。開車不能喝酒 → 10:45 離開",leg:"🚗 1小時05分",map:Q("巨峰ワイナリー 田主丸")},
-   {t:"11:50",ty:"food",nm:"若松屋＋柳川遊船",desc:"若松屋（鰻魚せいろ蒸し午餐）→步行5分搭柳川川下り（水鄉遊船・冬有暖桌船）→ 15:25 離開",note:`🅿 <a href="${Q('タイムズ柳川城隅町')}" target="_blank">Times 柳川城隅町</a>（若松屋）<br>🅿 <b>⭐首選 <a href="${Q('柳川市営本城町観光駐車場')}" target="_blank">柳川市営本城町観光駐車場</a></b>（收觀光巴士+一般車・限高3m長5m寬2m，Prado 寬鬆好停・1日500円；此為川下り終點，12:00-16:30 有接駁到松月乗船場）<br>🅿 <a href="${Q('クルメパーク川下り駐車場 柳川')}" target="_blank">クルメパーク川下り駐車場</a><br>📍 <a href="${Q('柳川遊船 マルガ―観光')}" target="_blank">柳川遊船 乗船場</a>`,leg:"🚗 46分",map:Q("若松屋 柳川 うなぎ")},
-   {t:"16:11",ty:"spot",nm:"Workman Plus 鳥栖",desc:"機能服飾賣場 → 17:11 離開",leg:"🚗 12分",map:Q("Workman Plus 鳥栖")},
-   {t:"17:23",ty:"stay",nm:"Route Inn 鳥栖站前",desc:"✅已訂3間/現地決済（各間各付）¥17,850×2＋¥16,500×1。入住 → 18:23 外出逛Frespo",leg:"🚶 9分",map:Q("ホテルルートイン 鳥栖駅前")},
-   {t:"18:32",ty:"spot",nm:"Frespo Tosu",desc:"鳥栖購物中心 → 約19:30 回飯店",map:Q("フレスポ鳥栖")}
+   {t:"11:50",ty:"food",nm:"若松屋＋柳川遊船",desc:"若松屋（鰻魚せいろ蒸し午餐）→步行5分搭柳川川下り（水鄉遊船・冬有暖桌船）→ 14:50 離開",note:`🅿 <a href="${Q('タイムズ柳川城隅町')}" target="_blank">Times 柳川城隅町</a>（若松屋）<br>🅿 <b>⭐首選 <a href="${Q('柳川市営本城町観光駐車場')}" target="_blank">柳川市営本城町観光駐車場</a></b>（收觀光巴士+一般車・限高3m長5m寬2m，Prado 寬鬆好停・1日500円；此為川下り終點，12:00-16:30 有接駁到松月乗船場）<br>🅿 <a href="${Q('クルメパーク川下り駐車場 柳川')}" target="_blank">クルメパーク川下り駐車場</a><br>📍 <a href="${Q('柳川遊船 マルガ―観光')}" target="_blank">柳川遊船 乗船場</a>`,leg:"🚗 46分",map:Q("若松屋 柳川 うなぎ")},
+   {t:"15:36",ty:"spot",nm:"Workman Plus 鳥栖",desc:"機能服飾賣場 → 16:36 離開",leg:"🚗 12分",map:Q("Workman Plus 鳥栖")},
+   {t:"16:48",ty:"stay",nm:"Route Inn 鳥栖站前",desc:"✅已訂3間/現地決済（各間各付）¥17,850×2＋¥16,500×1。入住 → 17:48 外出逛Frespo",leg:"🚶 9分",map:Q("ホテルルートイン 鳥栖駅前")},
+   {t:"17:57",ty:"spot",nm:"Frespo Tosu",desc:"鳥栖購物中心 → 約18:57 回飯店",map:Q("フレスポ鳥栖")}
   ]},
  {d:"D4",date:"2/9 (二)",theme:"太宰府 · teamLab · 福岡",temp:"7°",tlow:"福岡",img:"day4.jpg",
   ev:[
    {t:"08:00",ty:"stay",nm:"Route Inn 鳥栖站前（出發）",desc:"09:00離開",leg:"🚗 33分",map:Q("ホテルルートイン 鳥栖駅前")},
    {t:"09:33",ty:"spot",nm:"太宰府天滿宮",desc:"參拜免費。學問之神 → 11:03 離開",note:`🅿 <b>⭐首選 <a href="${Q('太宰府駐車センター')}" target="_blank">太宰府駐車センター</a></b>（850台・收巴士・格大、Prado 好停）<br>🅿 <a href="${Q('太宰府天満宮前駐車場')}" target="_blank">太宰府天満宮前駐車場</a>（最近）<br>🅿 <a href="${Q('サクラサク駐車場Ⅱ 太宰府')}" target="_blank">サクラサク駐車場Ⅱ</a>（平日最大400円）`,leg:"🚗 16分",map:Q("太宰府天満宮")},
    {t:"11:19",ty:"food",nm:"Gusto 太宰府交流道店",desc:"午餐 → 12:49 離開",leg:"🚗 24分",map:Q("ガスト 太宰府")},
-   {t:"13:13",ty:"spot",nm:"teamLab 森林 福岡",desc:"BOSS E・ZO 5F。大人2,400/3歲免 → 16:14 離開。時段票先買、先下載App、好走的鞋",note:`🅿 <a href="${Q('BOSS E・ZO FUKUOKA 駐車場')}" target="_blank">E・ZO 東側入口 駐車場</a>（一律3,000円，巨蛋區較貴）`,leg:"🚗 16分",map:Q("teamLab Forest 福岡 BOSS E・ZO")},
-   {t:"16:30",ty:"stay",nm:"索拉利亞西鉄酒店 福岡（天神）",desc:"先check-in放行李 → 16:50 出門逛八女。✅已訂3間/現地決済（各間各付）¥41,480/間。天神中心・西鉄福岡駅直結。住宿停車1,500円/台（限高2.1m，Prado/RAV4 OK）。早餐不訂（Day5客美多）",note:`⚠️ 兩台車：專用車位有限不可預約 → <b>傍晚早點到</b>，check-in 問櫃台兩台能否都停專用場`,leg:"🚗 約10分",map:Q("ソラリア西鉄ホテル福岡 天神")},
+   {t:"13:13",ty:"spot",nm:"teamLab 森林 福岡",desc:"BOSS E・ZO 5F。大人2,400/3歲免 → 16:13 離開。時段票先買、先下載App、好走的鞋",note:`🅿 <a href="${Q('BOSS E・ZO FUKUOKA 駐車場')}" target="_blank">E・ZO 東側入口 駐車場</a>（一律3,000円，巨蛋區較貴）`,leg:"🚗 16分",map:Q("teamLab Forest 福岡 BOSS E・ZO")},
+   {t:"16:29",ty:"stay",nm:"索拉利亞西鉄酒店 福岡（天神）",desc:"先check-in放行李 → 16:50 出門逛八女。✅已訂3間/現地決済（各間各付）¥41,480/間。天神中心・西鉄福岡駅直結。住宿停車1,500円/台（限高2.1m，Prado/RAV4 OK）。早餐不訂（Day5客美多）",note:`⚠️ 兩台車：專用車位有限不可預約 → <b>傍晚早點到</b>，check-in 問櫃台兩台能否都停專用場`,leg:"🚗 約10分",map:Q("ソラリア西鉄ホテル福岡 天神")},
    {t:"17:00",ty:"spot",nm:"八女本舖（八女抹茶）",desc:"八女茶・抹茶等特產 → 約18:00 回飯店過夜",map:Q("アンテナショップ八女本舗 福岡")}
   ]},
  {d:"D5",date:"2/10 (三)",theme:"福岡 · 回程",temp:"7°",tlow:"福岡",img:"day5.jpg",
@@ -280,10 +281,13 @@ function showDay(i){
     const dm=e.desc.match(/→\s*(約?\d{1,2}:\d{2})\s*((閉園離開|離開|外出|出門|回飯店)[^。]*)/);
     const dep=dm?dm[1]:''; const deplbl=dm?(dm[3]==='閉園離開'?'閉園':dm[3]):'離開';
     const cdesc=(dm&&e.leg)?e.desc.replace(dm[0],'').replace(/\s*。\s*/g,'。').replace(/^[\s。]+|[\s。]+$/g,''):e.desc;
+    const tm=t=>{const m=(t||'').match(/(\d{1,2}):(\d{2})/);return m?+m[1]*60+ +m[2]:null;};
+    const aM=tm(e.t),dM=tm(dep);let stay='';
+    if(aM!=null&&dM!=null&&dM>aM){const s=dM-aM,hh=Math.floor(s/60),mm=s%60;stay=hh===0?mm+'分':(mm===0?hh+'小時':(mm===30?hh+'.5小時':hh+'小時'+mm+'分'));}
     return `<div class="ev"><div class="time"><div class="hh">${e.t}</div></div>
       <div class="dot ${e.ty}"></div>
       <div class="card">
-        <div class="nm">${e.nm}<span class="badge ${bc}">${bt}</span></div>
+        <div class="nm">${e.nm}<span class="badge ${bc}">${bt}</span>${stay?`<span class="stay">⏱ ${stay}</span>`:''}</div>
         <div class="desc">${cdesc}</div>
         ${e.note?`<div class="note-in">${e.note}</div>`:''}
         <div class="acts">
