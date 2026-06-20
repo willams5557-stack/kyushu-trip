@@ -161,7 +161,7 @@
     </div>
     <div class="note snow" style="margin:10px 0 0">
       <span class="h">✓ 全免費</span>
-      高千穂峽步道(不划船) · 太宰府參拜 · 志賀海神社 · 金鱗湖 · 巨峰酒莊參觀 · 鳥栖Outlet · LaLaport看鋼彈
+      高千穂峽步道(不划船) · 太宰府參拜 · 志賀海神社 · 巨峰酒莊參觀 · 鳥栖Outlet · LaLaport看鋼彈
     </div>
     <div class="hint">票價以官方即時資訊為準，可能調整。小孩票價依實際年齡套用。</div>
   </div>
@@ -180,8 +180,8 @@
     </div>
     <div class="note warn">
       <span class="h">🚗 出發時間（避清晨結冰）</span>
-      第2天 阿蘇→由布院：<b>10:00 出發</b><br>
-      第3天 由布院→巨峰酒莊：<b>9:30 出發</b>（別趕8:30）
+      第2天 阿蘇→動物園→別府：<b>08:45 離開飯店</b>（阿蘇高地清晨結冰，路面小心）<br>
+      第3天 別府→巨峰酒莊：<b>08:45 出發</b>（別府海岸線結冰少）
     </div>
     <div class="note tk">
       <span class="h">🛞 車輛（兩台都要）</span>
@@ -190,13 +190,13 @@
     <div class="dayhd" style="margin:16px 0 10px;background:linear-gradient(120deg,#5b8aa6,#3f6b82)">
       <div class="dt" style="font-size:16px">決策樹</div>
     </div>
-    <div class="note snow"><span class="h">① 阿蘇→由布院/動物園（看雪/結冰）</span>
+    <div class="note snow"><span class="h">① 阿蘇→九重/動物園（看雪/結冰）</span>
       無雪 → 走經<b>小国町</b>捷徑（快又美）<br>
-      有雪/結冰 → 走<b>九重IC</b>上大分道，<b>湯布院IC</b>下<br>
+      有雪/結冰 → 走<b>九重IC</b>上大分道<br>
       大雪封路 → 往西大繞行 / 調整行程</div>
-    <div class="note snow"><span class="h">② 由布院→巨峰酒莊（看結冰）</span>
-      延到9:30後出發，走大分道主線，小心橋面/背陰彎道</div>
-    <div class="note snow"><span class="h">③ 由布院→動物園（看濃霧）</span>
+    <div class="note snow"><span class="h">② 別府→巨峰酒莊（看結冰）</span>
+      別府海岸線結冰少，08:45 出發走大分道→長崎道主線，小心橋面/背陰彎道</div>
+    <div class="note snow"><span class="h">③ 九重→動物園（看濃霧）</span>
       濃霧通行止め → 走 NEXCO 官方繞道（う回路）</div>
     <div class="note warn" style="margin-top:10px">
       <span class="h">⚠ 避開</span>繞「くじゅう連山」那條（海拔最高1330m、最會結冰）。動物園確認電話 0978-48-2331。
@@ -223,23 +223,22 @@ const DAYS = [
    {t:"14:07",ty:"spot",nm:"高千穂神社＋高千穂峽",desc:"先參拜高千穂神社→開車5分到高千穂峽走步道（不划船=免費）→ 16:07 離開",note:`🅿 <a href="${Q('高千穂神社 駐車場')}" target="_blank">高千穂神社 駐車場</a><br>🅿 <a href="${Q('高千穂峡 第1御塩井駐車場')}" target="_blank">高千穂峽 第1御鹽井</a> ・ <a href="${Q('高千穂峡 第2御塩井駐車場')}" target="_blank">第2御鹽井</a>`,leg:"🚗 1小時13分",map:Q("高千穂峡")},
    {t:"17:20",ty:"stay",nm:"亀之井阿蘇公園度假村",desc:"入住。夜間盆地低溫，留意隔日清晨結冰",map:Q("亀の井ホテル 阿蘇")}
   ]},
- {d:"D2",date:"2/7 (日)",theme:"阿蘇 → 動物園 → 由布院",temp:"3~4°",tlow:"由布院",img:"day2.jpg",
+ {d:"D2",date:"2/7 (日)",theme:"阿蘇 → 動物園 → 別府",temp:"3~4°",tlow:"別府",img:"day2.jpg",
   ev:[
    {t:"08:00",ty:"stay",nm:"龜之井阿蘇（出發）",desc:"早餐後 → 08:45 離開",leg:"🚗 9分",map:Q("亀の井ホテル 阿蘇")},
    {t:"08:54",ty:"spot",nm:"阿蘇神社＋ASO MILK FACTORY",desc:"阿蘇神社（樓門・拜殿為國指定重要文化財）→ 車程14分 → ASO MILK FACTORY（阿蘇牧場物產賣店，大人800/兒童500，限現金/PayPay）→ 10:54 離開",note:`📍 <a href="${Q('阿蘇神社')}" target="_blank">阿蘇神社</a> ・ <a href="${Q('ASO MILK FACTORY 阿蘇')}" target="_blank">ASO MILK FACTORY</a>`,leg:"🚗 59分",map:Q("阿蘇神社")},
    {t:"11:53",ty:"food",nm:"レストラン青山（九重）",desc:"午餐（雞肉南蠻・和牛鐵板，有兒童包廂）→ 12:53 離開。11:00–14:00（週三休，2/7有開）",note:`☎ 0973-77-6035 春節先電話確認有開<br>⚠️ <b>沒開或客滿 → 改去 <a href="${Q('道の駅 ゆふいん')}" target="_blank">道の駅 ゆふいん</a></b>`,leg:"🚗 38分",map:Q("レストラン青山 九重町野上")},
-   {t:"13:31",ty:"spot",nm:"九州自然動物園 African Safari",desc:"開車進safari。大人2,600/3歲免 → 16:31 離開。受付15:30前入園、注意16:00前後閉園。電話0978-48-2331",leg:"🚗 28分",map:G(33.3509,131.4137)},
-   {t:"16:59",ty:"spot",nm:"湯布院花卉村",desc:"Yufuin Floral Village（館內有貓頭鷹森林）→ 17:59 離開",leg:"🚗 5分",map:Q("湯布院フローラルヴィレッジ")},
-   {t:"18:04",ty:"stay",nm:"由布院 山水館（住）",desc:"溫泉鄉。和牛buffet吃到飽、露天風呂、退房10:00",map:Q("由布院温泉 駅")}
+   {t:"13:31",ty:"spot",nm:"九州自然動物園 African Safari",desc:"開車進safari。大人2,600/3歲免 → 16:00 閉園離開。受付15:30前入園、16:00前後閉園。電話0978-48-2331",leg:"🚗 23分",map:G(33.3509,131.4137)},
+   {t:"16:23",ty:"stay",nm:"別府溫泉 杉乃井ホテル（住）",desc:"✅已訂3間/現地or Web付（各間各付）。星館 豪華和洋室〔海側〕・シーダパレス世界料理buffet（晚＋早）。2大¥55,000×2＋2大2幼¥76,500。check-in 15:00~19:00 / 退房11:00",note:`大型溫泉度假村：棚田の湯・水樂園適合小孩`,map:Q("別府温泉 杉乃井ホテル")}
   ]},
- {d:"D3",date:"2/8 (一)",theme:"由布院 → 柳川 → 鳥栖",theme2:true,temp:"3~4°",tlow:"由布院",img:"day3.jpg",
+ {d:"D3",date:"2/8 (一)",theme:"別府 → 柳川 → 鳥栖",theme2:true,temp:"3~4°",tlow:"別府",img:"day3.jpg",
   ev:[
-   {t:"08:00",ty:"spot",nm:"金鱗湖",desc:"由布院晨霧名所 → 08:30 離開。往西下山前留意結冰",note:`🅿 <a href="${Q('セイワパーク金鱗湖')}" target="_blank">セイワパーク金鱗湖</a>（平日400/假日900円，2/8是假日）<br>🅿 <a href="${Q('タイムズ湯布院金鱗湖')}" target="_blank">Times 湯布院金鱗湖</a>`,leg:"🚗 1小時15分",map:Q("金鱗湖 由布院")},
-   {t:"09:45",ty:"spot",nm:"巨峰ワイナリー Kyoho Winery",desc:"久留米田主丸。參觀免費，試飲/餐廳收費。開車不能喝酒 → 10:45 離開",leg:"🚗 1小時05分",map:Q("巨峰ワイナリー 田主丸")},
-   {t:"11:50",ty:"food",nm:"若松屋＋柳川遊船",desc:"若松屋（鰻魚せいろ蒸し午餐）→步行5分搭柳川川下り（水鄉遊船・冬有暖桌船）→ 14:50 離開",note:`🅿 <a href="${Q('タイムズ柳川城隅町')}" target="_blank">Times 柳川城隅町</a>（若松屋）<br>🅿 <b>⭐首選 <a href="${Q('柳川市営本城町観光駐車場')}" target="_blank">柳川市営本城町観光駐車場</a></b>（收觀光巴士+一般車・限高3m長5m寬2m，Prado 寬鬆好停・1日500円；此為川下り終點，12:00-16:30 有接駁到松月乗船場）<br>🅿 <a href="${Q('クルメパーク川下り駐車場 柳川')}" target="_blank">クルメパーク川下り駐車場</a><br>📍 <a href="${Q('柳川遊船 マルガ―観光')}" target="_blank">柳川遊船 乗船場</a>`,leg:"🚗 46分",map:Q("若松屋 柳川 うなぎ")},
-   {t:"15:36",ty:"spot",nm:"Workman Plus 鳥栖",desc:"機能服飾賣場 → 16:36 離開",leg:"🚗 12分",map:Q("Workman Plus 鳥栖")},
-   {t:"16:48",ty:"stay",nm:"Route Inn 鳥栖站前",desc:"✅已訂3間/現地決済（各間各付）¥17,850×2＋¥16,500×1。入住 → 17:48 外出逛Frespo",leg:"🚶 9分",map:Q("ホテルルートイン 鳥栖駅前")},
-   {t:"17:57",ty:"spot",nm:"Frespo Tosu",desc:"鳥栖購物中心 → 約18:57 回飯店",map:Q("フレスポ鳥栖")}
+   {t:"08:45",ty:"stay",nm:"別府 杉乃井（出發）",desc:"早餐＋泡溫泉（棚田の湯・水樂園）後退房 → 08:45 出發",leg:"🚗 1小時26分",map:Q("別府温泉 杉乃井ホテル")},
+   {t:"10:11",ty:"spot",nm:"巨峰ワイナリー Kyoho Winery",desc:"久留米田主丸。參觀免費，試飲/餐廳收費。開車不能喝酒 → 11:11 離開",leg:"🚗 1小時08分",map:Q("巨峰ワイナリー 田主丸")},
+   {t:"12:19",ty:"food",nm:"若松屋＋柳川遊船",desc:"若松屋（鰻魚せいろ蒸し午餐）→步行5分搭柳川川下り（水鄉遊船・冬有暖桌船）→ 15:19 離開",note:`🅿 <a href="${Q('タイムズ柳川城隅町')}" target="_blank">Times 柳川城隅町</a>（若松屋）<br>🅿 <b>⭐首選 <a href="${Q('柳川市営本城町観光駐車場')}" target="_blank">柳川市営本城町観光駐車場</a></b>（收觀光巴士+一般車・限高3m長5m寬2m，Prado 寬鬆好停・1日500円；此為川下り終點，12:00-16:30 有接駁到松月乗船場）<br>🅿 <a href="${Q('クルメパーク川下り駐車場 柳川')}" target="_blank">クルメパーク川下り駐車場</a><br>📍 <a href="${Q('柳川遊船 マルガ―観光')}" target="_blank">柳川遊船 乗船場</a>`,leg:"🚗 46分",map:Q("若松屋 柳川 うなぎ")},
+   {t:"16:05",ty:"spot",nm:"Workman Plus 鳥栖",desc:"機能服飾賣場 → 17:05 離開",leg:"🚗 12分",map:Q("Workman Plus 鳥栖")},
+   {t:"17:17",ty:"stay",nm:"Route Inn 鳥栖站前",desc:"✅已訂3間/現地決済（各間各付）¥17,850×2＋¥16,500×1。入住 → 外出逛Frespo",leg:"🚶 9分",map:Q("ホテルルートイン 鳥栖駅前")},
+   {t:"17:26",ty:"spot",nm:"Frespo Tosu",desc:"鳥栖購物中心 → 回飯店",map:Q("フレスポ鳥栖")}
   ]},
  {d:"D4",date:"2/9 (二)",theme:"太宰府 · teamLab · 福岡",temp:"7°",tlow:"福岡",img:"day4.jpg",
   ev:[
