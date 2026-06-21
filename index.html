@@ -204,10 +204,38 @@
   </div>
 </div>
 
+<!-- ===== 飯店 VIEW ===== -->
+<div id="v-hotel" class="view">
+  <div class="tkwrap">
+    <div class="dayhd" style="margin:14px 0 12px">
+      <div class="dt">飯店 & 房價</div>
+      <div class="theme">6 大 + 2 幼｜每晚 3 間・各房各付（日幣）</div>
+    </div>
+    <table class="tktbl">
+      <tr><th>晚</th><th>飯店</th><th>① 雙人房<br><span style="font-size:9px;color:#888">×2間同價</span></th><th>② 4人房<br><span style="font-size:9px;color:#888">2大2幼</span></th></tr>
+      <tr><td>Day2<br>2/7</td><td>別府 杉乃井<br><span style="font-size:9px;color:#c4622d">星館 和洋室·海側</span></td><td>¥55,000</td><td>¥76,500</td></tr>
+      <tr><td>Day3<br>2/8</td><td>Route Inn<br>鳥栖站前</td><td>¥17,850</td><td>¥16,500</td></tr>
+      <tr><td>Day4<br>2/9</td><td>索拉利亞西鉄<br><span style="font-size:9px;color:#c4622d">天神</span></td><td>¥41,480</td><td>¥41,480</td></tr>
+    </table>
+    <div class="note tk" style="margin:12px 0 0">
+      <span class="h">🏨 說明</span>
+      • ① 雙人房 = 每晚 2 間、同價（各付各的）<br>
+      • ② 4人房 = 每晚 1 間（2 大 2 幼）<br>
+      • 全部現地或 Web 付・金額日幣・各房各付不加總
+    </div>
+    <div class="note snow" style="margin:10px 0 0">
+      <span class="h">🟠 待訂</span>
+      Day1（2/6）龜之井阿蘇公園度假村 — 推測 2026/7 開放後補
+    </div>
+    <div class="hint">房價以實際訂房確認為準。</div>
+  </div>
+</div>
+
 <!-- bottom nav -->
 <div class="bn">
   <a id="n-trip" class="on" onclick="nav('trip')"><span class="ic">🗓</span>行程</a>
   <a id="n-ticket" onclick="nav('ticket')"><span class="ic">🎫</span>門票</a>
+  <a id="n-hotel" onclick="nav('hotel')"><span class="ic">🏨</span>飯店</a>
   <a id="n-snow" onclick="nav('snow')"><span class="ic">❄️</span>雪天</a>
 </div>
 
@@ -299,7 +327,7 @@ function showDay(i){
   document.getElementById('daybox').innerHTML=head+tl;
 }
 function nav(v){
-  ['trip','ticket','snow'].forEach(x=>{
+  ['trip','ticket','hotel','snow'].forEach(x=>{
     document.getElementById('v-'+x).classList.toggle('on',x==v);
     document.getElementById('n-'+x).classList.toggle('on',x==v);
   });
