@@ -291,16 +291,11 @@ const BADGE={move:["b-move","交通"],food:["b-food","美食"],spot:["b-spot","�
 
 function renderTabs(){
   const t=document.getElementById('tabs');
-  const ov=`<div class="tab on" onclick="showOverview()"><div class="d">全覽</div><div class="n">📖</div></div>`;
-  t.innerHTML=ov+DAYS.map((d,i)=>`<div class="tab" onclick="showDay(${i})">
+  t.innerHTML=DAYS.map((d,i)=>`<div class="tab${i==0?' on':''}" onclick="showDay(${i})">
     <div class="d">${d.date.split(' ')[0]}</div><div class="n">${d.d}</div></div>`).join('');
 }
-function showOverview(){
-  document.querySelectorAll('.tab').forEach((el,k)=>el.classList.toggle('on',k==0));
-  document.getElementById('daybox').innerHTML=`<img class="dayimg" style="margin-top:14px" src="overview.jpg" alt="九州五日插畫" onerror="this.style.display='none'">`;
-}
 function showDay(i){
-  document.querySelectorAll('.tab').forEach((el,k)=>el.classList.toggle('on',k==i+1));
+  document.querySelectorAll('.tab').forEach((el,k)=>el.classList.toggle('on',k==i));
   const d=DAYS[i];
   const head=`<div class="dayhd" ${d.theme2?'style="background:linear-gradient(120deg,#3f6b82,#5b8aa6)"':''}>
     <div class="dt">${d.date}</div><div class="theme">${d.theme}</div>
@@ -334,7 +329,7 @@ function nav(v){
   });
   window.scrollTo(0,0);
 }
-renderTabs(); showOverview();
+renderTabs(); showDay(0);
 </script>
 </body>
 </html>
