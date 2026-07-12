@@ -251,9 +251,63 @@
   </div>
 </div>
 
+<!-- ===== 待辦 VIEW ===== -->
+<div id="v-todo" class="view">
+  <div class="tkwrap">
+    <div class="dayhd" style="margin:14px 0 12px;background:linear-gradient(120deg,#c4622d,#a34e22)">
+      <div class="dt">出發前待辦</div>
+      <div class="theme">照時間順序，做完打勾</div>
+    </div>
+
+    <div class="note warn">
+      <span class="h">🔥 2026/8 — 龜之井阿蘇 2/6 房開放</span>
+      每月批次放（8 月才放 2 月）→ <b>開了就訂</b>：<b>くまモンツイン ×3 間</b>（2大／2大／2大2幼）・¥25,872/間・定員4・共 9 間。<br>🐻 特典 <b>1 室 1 份 → 3 間＝3 份熊本熊</b>（2 小孩各 1 還多 1）。<br>❌ 不要メゾネット（螺旋梯對 3 歲幼兒危險）｜❌ 不要忍者房（睡布団無床）
+    </div>
+
+    <div class="note warn" style="margin-top:10px">
+      <span class="h">🚗 2026/11/6 — 租車開放（取車前 3 個月・英文版）</span>
+      外國駕照走<b>英文版＝取車前 3 個月</b>開放（日文版 6 個月是日本駕照用的）。<br><b>一次訂齊兩台 Prado</b>：4WD ＋ ジュニアシート×2 ＋ 異地還車（熊本機場取／福岡機場還）→ 全額信用卡預付。<br>⚠️ <b>雪胎沒有線上選項</b>（熊本非標配店）→ <b>訂完當天立刻 email 熊本機場店</b>要求加スタッドレス×2、<b>費用一併刷卡</b>（<b>千萬別要求現地付款</b> ← 上次被取消整單的原因），並請店家回覆「確約・在庫OK」。
+    </div>
+
+    <div class="note tk" style="margin-top:10px">
+      <span class="h">🎫 2026/12 下旬 — teamLab 福岡 2/9 時段票</span>
+      售票窗口約 1.5–2 個月 → <b>12 月起每週查、開了就買</b>（前売賣完可能不賣當日券）。
+    </div>
+
+    <div class="note warn" style="margin-top:10px">
+      <span class="h">🅿️ 2027/1/17 凌晨 00:00 — 搶桃園機場 P4</span>
+      官方：<b>進場日前 20 天 00:00 開放</b>（最晚前 2 天＝2/4）→ <b>1/16（六）晚上熬夜、跨到 1/17 那一刻就搶</b>，春節秒殺。<br>需停 3 天以上（你 5 天 ✅）｜春節連假 <b>400/日 × 5 天 ≈ NT$2,000</b>｜⚠️ <b>出國當天要到 P4 B1 客服中心繳費</b>才享優惠。<br>⚠️ P4 在<b>第二航廈</b>、星宇在<b>第一航廈</b> → 要搭航廈接駁（8 人＋4 箱，抓 10–15 分）。
+    </div>
+
+    <div class="note tk" style="margin-top:10px">
+      <span class="h">📋 出發前 1–2 週</span>
+      JAF／KKday 水族館折扣（海之中道 2/1–3/31 大人 2,500→2,200）｜Visit Japan Web｜eSIM／WiFi（8 人）｜換日幣（賣店/採草莓備現金）
+    </div>
+
+    <div class="note snow" style="margin-top:10px">
+      <span class="h">📅 出發前幾天 / 當天早上</span>
+      查路況（霧/雪管制）、確認動物園營業（0978-48-2331）｜當天早上依<b>雪天分頁的決策樹</b>選路線
+    </div>
+
+    <div class="dayhd" style="margin:18px 0 10px;background:linear-gradient(120deg,#4a7c59,#3a6347)">
+      <div class="dt" style="font-size:16px">✅ 已完成</div>
+    </div>
+    <table class="tktbl">
+      <tr><th>項目</th><th>狀態</th></tr>
+      <tr><td>✈️ 機票 JX846／JX841</td><td>✅ 已訂</td></tr>
+      <tr><td>🏨 Day2 別府 杉乃井</td><td>✅ 已訂</td></tr>
+      <tr><td>🏨 Day3 Route Inn 鳥栖</td><td>✅ 已訂</td></tr>
+      <tr><td>🏨 Day4 索拉利亞 天神</td><td>✅ 已訂</td></tr>
+      <tr><td>📄 駕照日文譯本（兩人）</td><td>✅ 已有</td></tr>
+    </table>
+    <div class="hint">日期與規則以各官方即時資訊為準。</div>
+  </div>
+</div>
+
 <!-- bottom nav -->
 <div class="bn">
   <a id="n-trip" class="on" onclick="nav('trip')"><span class="ic">🗓</span>行程</a>
+  <a id="n-todo" onclick="nav('todo')"><span class="ic">📝</span>待辦</a>
   <a id="n-ticket" onclick="nav('ticket')"><span class="ic">🎫</span>門票</a>
   <a id="n-hotel" onclick="nav('hotel')"><span class="ic">🏨</span>飯店</a>
   <a id="n-snow" onclick="nav('snow')"><span class="ic">❄️</span>雪天</a>
@@ -342,7 +396,7 @@ function showDay(i){
   document.getElementById('daybox').innerHTML=head+tl;
 }
 function nav(v){
-  ['trip','ticket','hotel','snow'].forEach(x=>{
+  ['trip','todo','ticket','hotel','snow'].forEach(x=>{
     document.getElementById('v-'+x).classList.toggle('on',x==v);
     document.getElementById('n-'+x).classList.toggle('on',x==v);
   });
