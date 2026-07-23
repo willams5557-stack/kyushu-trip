@@ -89,11 +89,13 @@
   .card .note-in a{color:var(--green);font-weight:700;text-decoration:underline;text-underline-offset:2px}
   .card .note-in b{color:var(--green2)}
   /* 車程連接條 */
-  .leg{display:flex;gap:10px;align-items:center;margin:5px 0 6px;min-height:30px}
-  .leg .rsp{flex:0 0 56px;display:flex;justify-content:center}
-  .leg .rsp .l{width:2px;align-self:stretch;min-height:26px;background:rgba(205,191,164,.7)}
-  .leg .txt{font-size:12.5px;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:5px}
-  .leg .ic{font-size:14px}
+  .leg{display:flex;gap:10px;align-items:stretch;margin:4px 0}
+  .leg .rail{flex:0 0 56px;display:flex;justify-content:center;align-items:center}
+  .dbar{width:9px;height:52px;border-radius:6px;position:relative;
+    background:linear-gradient(180deg,#c2cfd8,#7f9aab);
+    display:flex;align-items:center;justify-content:center}
+  .dbar span{position:absolute;font-size:10px;font-weight:800;color:#fff;white-space:nowrap;
+    background:#4f6f80;border-radius:7px;padding:2px 7px;box-shadow:0 1px 4px rgba(0,0,0,.18)}
   .card .meta{font-size:11px;color:var(--ink);margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 12px}
   .card .meta b{color:var(--green)}
   .acts{display:flex;gap:7px;margin-top:9px}
@@ -400,7 +402,7 @@ function showDay(i){
           <a class="btn fill" href="${e.map}" target="_blank">📍 地圖/導航</a>
         </div>
       </div></div></div>
-      ${e.leg?`<div class="leg"><div class="rsp"><div class="l"></div></div><div class="txt"><span class="ic">${e.leg.split(' ')[0]}</span>${e.leg.split(' ').slice(1).join(' ')}</div></div>`:''}`;
+      ${e.leg?`<div class="leg"><div class="rail"><div class="dbar"><span>${e.leg}</span></div></div><div class="cw"></div></div>`:''}`;
   }).join('')}</div>`;
   document.getElementById('daybox').innerHTML=head+tl;
 }
