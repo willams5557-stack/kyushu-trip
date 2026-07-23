@@ -79,6 +79,8 @@
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
     padding:12px 13px;box-shadow:0 2px 8px rgba(42,38,32,.05);margin-top:18px}
   .cw .card{margin-top:0}
+  .stay{font-size:11.5px;font-weight:800;color:#245740;background:#dcece2;
+    border-radius:9px;padding:3px 10px;margin-left:auto;white-space:nowrap}
   .card .nm{font-size:16.5px;font-weight:800;line-height:1.4;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
   .badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;color:#fff}
   .b-move{background:#5b8aa6} .b-food{background:var(--accent)}
@@ -390,12 +392,12 @@ function showDay(i){
     const aM=tm(e.t),dM=tm(dep);let stay='';
     if(aM!=null&&dM!=null&&dM>aM){const s=dM-aM,hh=Math.floor(s/60),mm=s%60;stay=hh===0?mm+'分':(mm===0?hh+'小時':(mm===30?hh+'.5小時':hh+'小時'+mm+'分'));}
     const rail=dep
-      ? `<div class="hh">${e.t}</div><div class="bar"><span>${stay||'停留'}</span></div><div class="dp">${dep}</div><div class="dpl">${deplbl}</div>`
+      ? `<div class="hh">${e.t}</div><div class="bar"></div><div class="dp">${dep}</div><div class="dpl">${deplbl}</div>`
       : `<div class="hh">${e.t}</div><div class="thin"></div>`;
     return `<div class="ev">
       <div class="rail ${e.ty}">${rail}</div>
       <div class="cw"><div class="card">
-        <div class="nm">${e.nm}<span class="badge ${bc}">${bt}</span></div>
+        <div class="nm">${e.nm}<span class="badge ${bc}">${bt}</span>${stay?`<span class="stay">⏱ ${stay}</span>`:''}</div>
         ${cdesc?`<div class="desc">${cdesc}</div>`:''}
         ${e.note?`<div class="note-in">${e.note}</div>`:''}
         <div class="acts">
