@@ -56,19 +56,29 @@
   /* timeline */
   .dayimg{display:block;width:calc(100% - 32px);margin:10px 16px 0;border-radius:16px;border:1px solid var(--line);box-shadow:0 4px 14px rgba(42,38,32,.12)}
   .tl{padding:10px 16px 30px}
-  .ev{position:relative;padding-left:60px;padding-bottom:16px}
-  .ev::before{content:"";position:absolute;left:24px;top:34px;bottom:-8px;width:2px;
-    background:linear-gradient(180deg,var(--line),rgba(205,191,164,.35))}
-  .ev:last-child::before{display:none}
-  .ev .time{position:absolute;left:0;top:0;width:52px;text-align:center}
-  .ev .time .hh{font-size:15px;font-weight:800;color:#15588f;
-    background:var(--cream);padding:2px 0;border-radius:6px;display:inline-block;line-height:1.2}
-  .dot{position:absolute;left:17px;top:28px;width:16px;height:16px;border-radius:50%;
-    background:var(--card);border:3px solid var(--green);z-index:2}
-  .dot.food{border-color:var(--accent)} .dot.move{border-color:#5b8aa6}
-  .dot.spot{border-color:var(--green)} .dot.stay{border-color:#9a6db5}
+  /* 左時間軸（抵達／停留條／離開） */
+  .ev{display:flex;gap:10px;align-items:stretch}
+  .rail{flex:0 0 56px;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .rail .hh{font-size:15px;font-weight:800;color:#15588f;line-height:1.25}
+  .rail .dp{font-size:15px;font-weight:800;color:#c31f1f;line-height:1.25;margin-top:4px}
+  .rail .dpl{font-size:9.5px;font-weight:700;color:var(--muted);line-height:1.2}
+  .rail .bar{flex:1;min-height:30px;width:9px;border-radius:6px;margin:5px 0 0;
+    background:linear-gradient(180deg,#8fc0a8,#2f6b4f);
+    display:flex;align-items:center;justify-content:center;position:relative}
+  .rail .bar span{position:absolute;font-size:10px;font-weight:800;color:#fff;
+    background:#245740;border-radius:7px;padding:2px 6px;white-space:nowrap;
+    box-shadow:0 1px 4px rgba(0,0,0,.18)}
+  .rail.food .bar{background:linear-gradient(180deg,#e2bd85,#c98a3a)}
+  .rail.food .bar span{background:#9c6520}
+  .rail.stay .bar{background:linear-gradient(180deg,#c3a7d6,#9a6db5)}
+  .rail.stay .bar span{background:#7a4f96}
+  .rail.move .bar{background:linear-gradient(180deg,#9dbcd0,#5b8aa6)}
+  .rail.move .bar span{background:#3f6b82}
+  .rail .thin{flex:1;min-height:14px;width:2px;background:var(--line);margin-top:6px}
+  .cw{flex:1;min-width:0;padding-bottom:2px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
     padding:12px 13px;box-shadow:0 2px 8px rgba(42,38,32,.05);margin-top:18px}
+  .cw .card{margin-top:0}
   .card .nm{font-size:16.5px;font-weight:800;line-height:1.4;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
   .badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;color:#fff}
   .b-move{background:#5b8aa6} .b-food{background:var(--accent)}
@@ -79,13 +89,10 @@
   .card .note-in a{color:var(--green);font-weight:700;text-decoration:underline;text-underline-offset:2px}
   .card .note-in b{color:var(--green2)}
   /* 車程連接條 */
-  .leg{position:relative;padding-left:60px;margin:-4px 0 4px;min-height:34px;display:flex;align-items:center}
-  .legt{position:absolute;left:0;width:52px;text-align:center;line-height:1.1}
-  .legt-h{font-size:15px;font-weight:800;color:#c31f1f;display:inline-block;background:var(--cream);border-radius:6px;padding:2px 4px}
-  .legt-l{font-size:9.5px;color:var(--muted);font-weight:700;display:block}
-  .stay{font-size:11px;font-weight:800;color:#245740;background:#dcecE2;border-radius:8px;padding:3px 9px;margin-left:auto}
-  .leg .ln{position:absolute;left:24px;top:-4px;bottom:-4px;width:2px;background:rgba(205,191,164,.55)}
-  .leg .txt{font-size:12px;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:5px}
+  .leg{display:flex;gap:10px;align-items:center;margin:5px 0 6px;min-height:30px}
+  .leg .rsp{flex:0 0 56px;display:flex;justify-content:center}
+  .leg .rsp .l{width:2px;align-self:stretch;min-height:26px;background:rgba(205,191,164,.7)}
+  .leg .txt{font-size:12.5px;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:5px}
   .leg .ic{font-size:14px}
   .card .meta{font-size:11px;color:var(--ink);margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 12px}
   .card .meta b{color:var(--green)}
@@ -376,21 +383,24 @@ function showDay(i){
     const [bc,bt]=BADGE[e.ty];
     const dm=e.desc.match(/→\s*(約?\d{1,2}:\d{2})\s*((閉園離開|離開|外出|出門|回飯店)[^。]*)/);
     const dep=dm?dm[1]:''; const deplbl=dm?(dm[3]==='閉園離開'?'閉園':dm[3]):'離開';
-    const cdesc=(dm&&e.leg)?e.desc.replace(dm[0],'').replace(/\s*。\s*/g,'。').replace(/^[\s。]+|[\s。]+$/g,''):e.desc;
+    const cdesc=dm?e.desc.replace(dm[0],'').replace(/\s*。\s*/g,'。').replace(/^[\s。]+|[\s。]+$/g,''):e.desc;
     const tm=t=>{const m=(t||'').match(/(\d{1,2}):(\d{2})/);return m?+m[1]*60+ +m[2]:null;};
     const aM=tm(e.t),dM=tm(dep);let stay='';
     if(aM!=null&&dM!=null&&dM>aM){const s=dM-aM,hh=Math.floor(s/60),mm=s%60;stay=hh===0?mm+'分':(mm===0?hh+'小時':(mm===30?hh+'.5小時':hh+'小時'+mm+'分'));}
-    return `<div class="ev"><div class="time"><div class="hh">${e.t}</div></div>
-      <div class="dot ${e.ty}"></div>
-      <div class="card">
-        <div class="nm">${e.nm}<span class="badge ${bc}">${bt}</span>${stay?`<span class="stay">⏱ ${stay}</span>`:''}</div>
-        <div class="desc">${cdesc}</div>
+    const rail=dep
+      ? `<div class="hh">${e.t}</div><div class="bar"><span>${stay||'停留'}</span></div><div class="dp">${dep}</div><div class="dpl">${deplbl}</div>`
+      : `<div class="hh">${e.t}</div><div class="thin"></div>`;
+    return `<div class="ev">
+      <div class="rail ${e.ty}">${rail}</div>
+      <div class="cw"><div class="card">
+        <div class="nm">${e.nm}<span class="badge ${bc}">${bt}</span></div>
+        ${cdesc?`<div class="desc">${cdesc}</div>`:''}
         ${e.note?`<div class="note-in">${e.note}</div>`:''}
         <div class="acts">
           <a class="btn fill" href="${e.map}" target="_blank">📍 地圖/導航</a>
         </div>
-      </div></div>
-      ${e.leg?`<div class="leg"><div class="ln"></div>${dep?`<div class="legt"><span class="legt-h">${dep}</span><span class="legt-l">${deplbl}</span></div>`:''}<div class="txt"><span class="ic">${e.leg.split(' ')[0]}</span>${e.leg.split(' ').slice(1).join(' ')}</div></div>`:''}`;
+      </div></div></div>
+      ${e.leg?`<div class="leg"><div class="rsp"><div class="l"></div></div><div class="txt"><span class="ic">${e.leg.split(' ')[0]}</span>${e.leg.split(' ').slice(1).join(' ')}</div></div>`:''}`;
   }).join('')}</div>`;
   document.getElementById('daybox').innerHTML=head+tl;
 }
